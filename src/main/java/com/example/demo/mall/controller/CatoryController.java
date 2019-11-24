@@ -19,4 +19,10 @@ public class CatoryController {
         catoryMapper.insert(name,age);
         return name;
     }
+
+    @RequestMapping("/ztree")
+    public String index (){
+
+        return "/mall/ztree";
+    }
 }
