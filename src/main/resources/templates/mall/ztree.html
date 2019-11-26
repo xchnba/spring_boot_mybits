@@ -11,18 +11,53 @@
       window.getpath
       alert(a)
         $("#name").val("buxiaole")
-
     }
 
+    // $("#fileup").click(function () {
+    //     alert(123)
+    // })
 
+    function filechange() {
+        debugger;
+        var formdata = new FormData();
+        var file = document.getElementById('fileup');
+        var fileObj = file.files[0];
+        if(file && fileObj) {
+            formdata.append("file",fileObj);
+        }
+        $.ajax({
+            url:"/test/upload",
+            type:"post",
+            data:formdata,
+            contentType: false,
+            processData: false,
+            success:function(rst){
+                if(rst.state){
+                    var url="/"+rst.data;
+                    $('<img class="show-img" src="'+url+'">').appendTo("#imgs")
+                }
+            }
+    });
+
+
+    }
 </script>
 <body>
-<h1>
+<input>
     静态页面可以写项目了
     <div>
      非常可以   <input id="name" value="hahha" />
      点击变色   <input type="button" onclick="founction()"/>
     </div>
+     <br/>
+      <br>
+     <div>
+
+      文件上传   <input type="file" name="file"  id="fileup" onchange="filechange()" />
+
+     </div>
+
+
 
 </h1>
 </body>
