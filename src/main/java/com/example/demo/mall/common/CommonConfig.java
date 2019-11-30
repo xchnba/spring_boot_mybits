@@ -13,7 +13,7 @@ public class CommonConfig {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setMaxFileSize(DataSize.ofBytes(10240L * 1024L));
+        factory.setMaxFileSize(DataSize.ofBytes(1024000L * 5120));
         return factory.createMultipartConfig();
     }
 }
