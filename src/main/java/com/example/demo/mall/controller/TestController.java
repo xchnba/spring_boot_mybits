@@ -22,6 +22,11 @@ public class TestController {
         return "/test/look";
     }
 
+    @RequestMapping("/menu")
+    public String menu(){
+        return "/test/menu";
+    }
+
     @RequestMapping("/upload")
     public String upload(HttpServletRequest request){
         MultipartFile file = null;
