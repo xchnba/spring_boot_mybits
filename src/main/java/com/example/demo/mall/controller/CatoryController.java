@@ -16,7 +16,8 @@ public class CatoryController {
     public String savename (){
         String name = "zhangsan";
         int age= 12;
-        catoryMapper.insert(name,age);
+        String id ="2233swdsass";
+        catoryMapper.insert(id,name,age);
         return name;
     }
 
