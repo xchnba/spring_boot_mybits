@@ -1,5 +1,6 @@
 package com.example.demo.mall.controller;
 
+import com.example.demo.mall.common.Utils.IdUtils;
 import com.example.demo.mall.dao.UserDao;
 import com.example.demo.mall.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,11 @@ public class JpaController {
     @ResponseBody
     public String jpaInsetr(){
         User user = new User();
-        user.setId("3432ee");
-        user.setName("王五");
-        user.setAge(12);
+//        user.setId(IdUtils.getIncreaseIdByCurrentTimeMillis());
+        user.setId(IdUtils.getIncreaseIdByNanoTime());
+//        user.setId(IdUtils.getRandomIdByUUID());
+        user.setName("赵六");
+        user.setAge(18);
         userDao.save(user);
         return "插入成功";
     }
