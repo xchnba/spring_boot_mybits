@@ -19,10 +19,10 @@ public class JpaController {
     public String jpaInsetr(){
         User user = new User();
 //        user.setId(IdUtils.getIncreaseIdByCurrentTimeMillis());
-        user.setId(IdUtils.getIncreaseIdByNanoTime());
-//        user.setId(IdUtils.getRandomIdByUUID());
-        user.setName("赵六");
-        user.setAge(18);
+//        user.setId(IdUtils.getIncreaseIdByNanoTime());
+        user.setId(IdUtils.getRandomIdByUUID());
+        user.setName("哈哈");
+        user.setAge(20);
         userDao.save(user);
         return "插入成功";
     }
@@ -40,5 +40,10 @@ public class JpaController {
 ////        User userList = userDao.findOne(user);
 ////        return userList.toString();
 //    }
+
+
+
+
+
 }
 
