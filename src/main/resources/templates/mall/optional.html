@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/common/jquery-3.4.1.min.js"></script>
+</head>
+<script>
+    window.onload = function(){
+        var opts = document.getElementById("select");
+        var value = 2//这个值就是你获取的值;
+        if(value!=""){
+            for(var i=0;i<opts.options.length;i++){
+                if(value==opts.options[i].value){
+                    opts.options[i].selected = 'selected';
+                    // alert(opts.options[i].value);
+                    break;
+                }
+            }
+        }
+    }
+</script>
+<body>
+
+<form>
+    <div>
+        <span>选择选择</span>
+        <select id="select" >
+        <option value="1">我是哈哈</option>
+        <option value="2">黑乎乎胡</option>
+        <option value="3">呵呵大</option>
+        </select>
+    </div>
+</form>
+
+</body>
+</html>

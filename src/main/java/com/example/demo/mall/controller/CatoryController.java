@@ -26,4 +26,9 @@ public class CatoryController {
 
         return "/mall/ztree";
     }
+
+    @RequestMapping("/optional")
+    public String optional (){
+        return "/mall/optional";
+    }
 }
