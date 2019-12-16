@@ -50,5 +50,11 @@ public class TestController {
     }
 
 
+    @RequestMapping("/addcss")
+    public String addcss(HttpServletRequest request){
+        return "/page/jskzcss";
+    }
+
+
 
 }

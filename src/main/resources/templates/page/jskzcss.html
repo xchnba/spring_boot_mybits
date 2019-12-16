@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/js/common/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="/css/base/base.css" />
+</head>
+
+<body>
+<div id="line1" style="display: block">
+    <h1>欢迎来到样式选择页面</h1>
+</div>
+<div>
+    <form>
+        <table>
+
+                <th>姓名</th>
+                <th>年龄</th>
+
+
+            <tr>
+                <td>
+                  请输入姓名  <input type="text" id="name"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    请输入年龄  <input type="text" value="72373" id="age"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<div>
+    <br>
+    <input type="button" onclick="changeName()" value="控制name输入框是否可输入" style="width: 200px"/><br>
+    <br>
+    <input type="button" onclick="changeLine1()" value="控制第一行的显示或隐藏" style="width: 200px"/><br>
+    <br>
+    <input type="button" onclick="changeAge()"  value="控制age输入框的内字体颜色" style="width: 200px"/><br>
+</div>
+<script>
+var ds = 0;
+function changeName() {
+    if(ds == 0){
+        $("#name").attr("disabled","disabled");
+        ds = 1;
+    }else {
+        $('#name').removeAttr("disabled");
+        ds = 0;
+    }
+
+}
+
+var dp = 0;
+function changeLine1() {
+    if(dp == 0){
+        $("#line1").css("display","none");
+        dp = 1;
+    }else {
+        $("#line1").css("display","");
+        dp = 0;
+    }
+
+}
+var re = 0;
+function changeAge() {
+    if(re == 0){
+        $("#age").addClass("read")
+        re = 1;
+    }else {
+        $("#age").removeClass("read")
+        re = 0;
+    }
+
+
+}
+</script>
+</body>
+</html>
