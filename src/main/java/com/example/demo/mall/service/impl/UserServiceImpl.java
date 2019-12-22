@@ -16,11 +16,10 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
     @Override
-    public PageInfo<User> findUserList() {
-        int page = 1;
-        int size = 3;
+    public PageInfo<User> findUserList(int page, int size) {
         PageHelper.startPage(page,size);
         List<User> userList = userMapper.findUserList();
+//        PageHelper.startPage(page,size);
         PageInfo<User> userPageInfo = new PageInfo<User>(userList);
 //        PageInfo<User> userPageInfo = userMapper.findUserList();
         return userPageInfo;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @LogAnnotation(desc = "my annotion")
+    @LogAnnotation(desc = "myannotion")
     public PageInfo<User> findUserListByAop(int page, int size) {
 //        PageHelper.startPage(page,size);
         List<User> userList = userMapper.findUserList();

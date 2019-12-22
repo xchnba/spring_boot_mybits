@@ -6,7 +6,7 @@ import com.github.pagehelper.PageInfo;
 import java.util.List;
 
 public interface UserService {
-    PageInfo<User> findUserList();
+    PageInfo<User> findUserList(int page, int size);
 
     PageInfo<User> findUserListByAop(int page, int size);
 }

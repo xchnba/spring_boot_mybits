@@ -9,6 +9,5 @@ import java.util.List;
 public interface UserMapper {
     @Select("select * from users")
     List<User> findUserList();
-    @Select("select * from users")
-    PageInfo<User> findUserListbyPage();
+
 }

@@ -45,9 +45,9 @@ public class StudentController {
     @ResponseBody
     public PageInfo<User> findUserList(String name){
         Student student = studentMapper.getStudentByName("douzi");
-//        PageInfo<User> userList = userService.findUserList();
         int page = 1;
-        int size = 4;
+        int size = 10;
+//        PageInfo<User> userList = userService.findUserList(page,size);
         PageInfo<User> userList = userService.findUserListByAop(page,size);
         return userList;
 
