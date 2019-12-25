@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 @Controller
 public class JpaController {
@@ -52,11 +51,19 @@ public class JpaController {
         System.out.println("刚开始执行方法时候的时间=="+time1);
         UsersThread is = new UsersThread(userDao);
         Thread t1 = new Thread(is);
-//        Thread t2= new Thread(is);
-        ExecutorService newcash = Executors.newCachedThreadPool();
-        newcash.execute(t1);
+        Thread t2= new Thread(is);
+        Thread t3= new Thread(is);
+//        ExecutorService newcash = Executors.newCachedThreadPool();
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(3, 3, 60L, TimeUnit.SECONDS, new ArrayBlockingQueue<>(3));
+        executor.execute(t1);
+        executor.execute(t2);
+        executor.execute(t3);
+
+//        newcash.execute(t1);
 //        newcash.execute(t2);
-        newcash.shutdown();
+//        newcash.shutdown();
+//        t1.start();
+//        t2.start();
         long time2 = System.currentTimeMillis();
         System.out.println("执行结束方法时候的时间=="+time2);
         System.out.println("消耗的时间=="+(time2-time1));

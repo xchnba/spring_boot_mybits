@@ -4,27 +4,39 @@ import com.example.demo.mall.common.Utils.IdUtils;
 import com.example.demo.mall.dao.UserDao;
 import com.example.demo.mall.domain.User;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class UsersThread extends Thread {
-    private volatile static int count = 50000;
+    private volatile  int count=1;
     UserDao userDao;
+    private Object object=new Object();
+    private AtomicInteger atomic  = new AtomicInteger(0);
     public UsersThread(UserDao userDao){
         this.userDao=userDao;
     }
     @Override
     public void run() {
-        for (int i = 0;i<count;i++){
-            addUser(i);
-        }
+
+        while (count<5000){
+                addUser(count);
+            }
+
+//        for (int i = 0;i<5000;i++){
+//            addUser(i);
+//        }
 
     }
 
-    private synchronized void addUser(int i) {
+    private  void addUser(int i) {
+        count = atomic.incrementAndGet();
+        System.out.println(Thread.currentThread().getName()+"====="+count);
         User user = new User();
         user.setId(IdUtils.getRandomIdByUUID());
         user.setName("批量");
         user.setAge(i);
         userDao.save(user);
-        count--;
+
+
     }
 }
