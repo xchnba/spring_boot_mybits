@@ -5,6 +5,7 @@ import com.example.demo.mall.domain.Student;
 import com.example.demo.mall.domain.User;
 import com.example.demo.mall.mapper.StudentMapper;
 import com.example.demo.mall.service.UserService;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,7 @@ public class StudentController {
         Student student = studentMapper.getStudentByName("douzi");
         int page = 1;
         int size = 10;
+        Page<Student> st = new Page<>(1,2);
 //        PageInfo<User> userList = userService.findUserList(page,size);
         PageInfo<User> userList = userService.findUserListByAop(page,size);
         return userList;
