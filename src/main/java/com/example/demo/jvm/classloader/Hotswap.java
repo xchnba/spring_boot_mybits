@@ -30,7 +30,7 @@ public class Hotswap {
     public static void loadUser() throws ClassNotFoundException, InstantiationException, IllegalAccessException,
             NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
         MyClassLoader myLoader = new MyClassLoader();
-        Class<?> class1 = myLoader.findClass("com.example.demo.jvm.zjmjs");
+        Class<?> class1 = myLoader.findClass("com.example.demo.jvm.zjmjs.User");
         Object obj1 = class1.newInstance();
         Method method = class1.getMethod("add");
         method.invoke(obj1);
