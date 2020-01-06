@@ -1,15 +1,20 @@
 package com.example.demo.mall.controller;
 
+import com.example.demo.interview.TestCsv;
 import com.example.demo.mall.common.Utils.IdUtils;
 import com.example.demo.mall.controller.thread.threadpool.UsersCallable;
 import com.example.demo.mall.controller.thread.threadpool.UsersThread;
+import com.example.demo.mall.dao.SharesDao;
 import com.example.demo.mall.dao.UserDao;
+import com.example.demo.mall.domain.Shares;
 import com.example.demo.mall.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.xml.crypto.Data;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -17,16 +22,38 @@ import java.util.concurrent.*;
 public class JpaController {
     @Autowired
     UserDao userDao;
+    @Autowired
+    SharesDao sharesDao;
     @RequestMapping("/jpainsert")
     @ResponseBody
     public String jpaInsetr(){
-        User user = new User();
-//        user.setId(IdUtils.getIncreaseIdByCurrentTimeMillis());
-//        user.setId(IdUtils.getIncreaseIdByNanoTime());
-        user.setId(IdUtils.getRandomIdByUUID());
-        user.setName("哈哈");
-        user.setAge(20);
-        userDao.save(user);
+//        User user = new User();
+////        user.setId(IdUtils.getIncreaseIdByCurrentTimeMillis());
+////        user.setId(IdUtils.getIncreaseIdByNanoTime());
+//        user.setId(IdUtils.getRandomIdByUUID());
+//        user.setName("哈哈");
+//        user.setAge(20);
+//        userDao.save(user);
+        double spj =4328.22;
+        double zgj =4528.22;
+        double zdj =4352.22;
+        double pjj =(zgj+zdj)/2;
+        double kpj =4325.22;
+        double qspj =4329.22;
+        Shares shares = new Shares();
+        shares.setId(IdUtils.getRandomIdByUUID());
+        shares.setGpdate(new Date());
+        shares.setGpdm("00032");
+        shares.setName("沪深300指");
+        shares.setSpj(spj);
+        shares.setZgj(zgj);
+        shares.setZdj(zdj);
+        shares.setKpj(kpj);
+        shares.setPjj(pjj);
+        shares.setQspj(qspj);
+        shares.setZde("221");
+        shares.setZdf("-23");
+        sharesDao.save(shares);
         return "插入成功";
     }
 
@@ -110,7 +137,13 @@ public class JpaController {
         return "插入成功";
     }
 
-
+    @RequestMapping("/insertshares")
+    @ResponseBody
+    public String insertshares(){
+        TestCsv csv = new TestCsv(sharesDao);
+        csv.test(3,1);
+        return "插入csv数据成功";
+    }
 
 
 }

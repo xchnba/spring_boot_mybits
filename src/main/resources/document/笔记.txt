@@ -1,0 +1,5 @@
+SELECT * FROM shares ORDER BY gpdate asc;
+SELECT * FROM shares t WHERE t.gpdate ='2015-06-09';
+SELECT * FROM shares t WHERE t.gpdate >'2007-10-01' AND t.gpdate <'2015-10-01' ORDER BY gpdate asc;
+SELECT * FROM shares t WHERE t.gpdate >'2007-10-14' AND t.gpdate <'2015-06-11' ORDER BY gpdate asc;
+SELECT COUNT(*) FROM shares t WHERE t.gpdate >'2007-10-14' AND t.gpdate <'2015-06-11' ORDER BY gpdate asc;

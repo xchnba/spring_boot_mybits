@@ -1,10 +1,17 @@
 package com.example.demo.interview;
 
+import com.example.demo.mall.common.Utils.IdUtils;
+import com.example.demo.mall.dao.SharesDao;
+import com.example.demo.mall.domain.Shares;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 
 /**
@@ -13,9 +20,16 @@ import java.util.Arrays;
  * @date 2018/8/717:00
  */
 public class TestCsv {
+
+   private SharesDao sharesDao;
+
     public static void main(String[] args) {
-        TestCsv test = new TestCsv();
-        test.test(3, 1);
+//        TestCsv test = new TestCsv();
+//        test.test(3, 1);
+    }
+
+    public  TestCsv(SharesDao sharesDao){
+        this.sharesDao = sharesDao;
     }
 
     public void test(int row, int col) {
@@ -25,11 +39,58 @@ public class TestCsv {
             String line = null;
             int index = 0;
             int number = 0;
+            double spj =4328.22;
+            double zgj =4528.22;
+            double zdj =4352.22;
+            double kpj =4325.22;
+            double qspj =4329.22;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             while ((line = reader.readLine()) != null) {
                 String item[] = line.split(",");//一行数组
                 if (index >0 ) {// 第一行数据不读取
+                    Shares shares = new Shares();
+                    shares.setId(IdUtils.getRandomIdByUUID());
                     for (int i=0;i<item.length;i++){
                         String last = item[i];//这里
+                        if(i==0){
+                          Date dt = sdf.parse(last);
+                          shares.setGpdate(dt);
+                        }
+                        if(i==1){
+                            shares.setGpdm(last);
+                        }
+                        if(i==2){
+                            shares.setName("沪深300");
+                        }
+                        if(i==3){
+                            spj = Double.valueOf(last);
+                            shares.setSpj(spj);
+                        }
+                        if(i==4){
+                            zgj = Double.valueOf(last);
+                            shares.setZgj(zgj);
+                        }
+                        if(i==5){
+                            zdj = Double.valueOf(last);
+                            shares.setZdj(zdj);
+                        }
+                        if(i==6){
+                            kpj = Double.valueOf(last);
+                            shares.setKpj(kpj);
+                        }
+                        if(i==7){
+                            qspj = Double.valueOf(last);
+                            shares.setQspj(qspj);
+                        }
+                        if(i==8){
+                            shares.setZde(last);
+                        }
+                        if(i==9){
+                            double pjj =(shares.getZgj()+shares.getZdj())/2;
+                            shares.setZdf(last);
+                            shares.setPjj(pjj);
+                            sharesDao.save(shares);
+                        }
                         System.out.println(last+"一共打印了多少数据=="+number);
                         number++;
                     }
