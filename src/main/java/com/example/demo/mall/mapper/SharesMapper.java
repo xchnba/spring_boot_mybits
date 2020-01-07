@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface SharesMapper {
-    @Select("SELECT * FROM shares t WHERE t.gpdate >'2007-10-14' AND t.gpdate <'2015-06-30' ORDER BY gpdate asc")
+    // 2007-10-14,2008-11-04
+    @Select("SELECT * FROM shares t WHERE t.gpdate >'2007-10-14' AND t.gpdate <'2019-12-31' ORDER BY gpdate asc")
     List<Shares> getSharesBydate();
 }

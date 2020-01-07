@@ -24,6 +24,10 @@ public class TestCsv {
    private SharesDao sharesDao;
 
     public static void main(String[] args) {
+
+        double dt = 1000l;
+        double pj = dt/5762;
+        System.out.println("均价等于"+pj);
 //        TestCsv test = new TestCsv();
 //        test.test(3, 1);
     }
@@ -35,7 +39,7 @@ public class TestCsv {
     public void test(int row, int col) {
         try {
             //先FileReader把文件读出来再bufferReader按行读  reader.readLine(); 没有标题用不着了
-            BufferedReader reader = new BufferedReader(new FileReader("E:\\data\\000300.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("D:\\sdadd\\000300.csv"));
             String line = null;
             int index = 0;
             int number = 0;
