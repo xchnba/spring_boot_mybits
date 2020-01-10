@@ -46,6 +46,7 @@ public class SharesController {
       }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        dingtou(sharesList);
         for(int i=0;i<sharesList.size();i++){
             int n = i + 1;
             if(n>87){
@@ -60,7 +61,7 @@ public class SharesController {
                 jpList2.add(jpList1.get(i));
             }
         }
-        dingtou(jpList2);
+//        dingtou(jpList2);
         return "查询成功";
     }
 

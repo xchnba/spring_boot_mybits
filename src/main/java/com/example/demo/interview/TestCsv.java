@@ -25,8 +25,15 @@ public class TestCsv {
 
     public static void main(String[] args) {
 
-        double dt = 1000l;
+        double dt = 10000l; //  定投1万2每个月
         double pj = dt/5762;
+        double lv = 0.012; //利率百分之1.2，年化利率百分之14.4
+        double lj = 0;
+        for (int i = 0;i<12;i++){
+            lj = (lj+dt)*1.012;
+            System.out.println("第"+i+"个月后累计为多少=="+lj);
+        }
+        System.out.println("60个月后累计为多少=="+lj);
         System.out.println("均价等于"+pj);
 //        TestCsv test = new TestCsv();
 //        test.test(3, 1);
