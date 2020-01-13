@@ -8,9 +8,7 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -188,5 +186,19 @@ public class ClassUtil {
 				}
 			}
 		}
+	}
+
+	// 首字母转小写
+	public static String toLowerCaseFirstOne(String s) {
+		if (Character.isLowerCase(s.charAt(0)))
+			return s;
+		else
+			return (new StringBuilder()).append(Character.toLowerCase(s.charAt(0))).append(s.substring(1)).toString();
+	}
+
+	// 初始化对象
+	public static Object newInstance(Class<?> classInfo)
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+		return classInfo.newInstance();
 	}
 }
