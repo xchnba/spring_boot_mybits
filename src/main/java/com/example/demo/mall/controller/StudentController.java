@@ -45,12 +45,17 @@ public class StudentController {
     @RequestMapping("/findUserList")
     @ResponseBody
     public PageInfo<User> findUserList(String name){
-        Student student = studentMapper.getStudentByName("douzi");
+//        Student student = studentMapper.getStudentByName("douzi");
+        // 使用动态代理技术虚拟调用方法
+
+         User student = studentMapper.selectUser("批量", 7962);
+//        User selectUser = userMapper.selectUser("批量", 7962);
         int page = 1;
         int size = 10;
-        Page<Student> st = new Page<>(1,2);
+        Page<User> st = new Page<>(1,2);
 //        PageInfo<User> userList = userService.findUserList(page,size);
-        PageInfo<User> userList = userService.findUserListByAop(page,size);
+//        PageInfo<User> userList = userService.findUserListByAop(page,size);
+        PageInfo<User> userList = userService.findUserListByPageObj(st);
         return userList;
 
     }
