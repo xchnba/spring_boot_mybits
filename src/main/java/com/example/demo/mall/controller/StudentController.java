@@ -7,13 +7,16 @@ import com.example.demo.mall.mapper.StudentMapper;
 import com.example.demo.mall.service.UserService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
+import com.sun.javafx.collections.MappingChange;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.PublicKey;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class StudentController {
@@ -53,6 +56,8 @@ public class StudentController {
         int page = 1;
         int size = 10;
         Page<User> st = new Page<>(1,2);
+        Map<String,String> map = new HashMap<>();
+        map.put("kuorong","123");
 //        PageInfo<User> userList = userService.findUserList(page,size);
 //        PageInfo<User> userList = userService.findUserListByAop(page,size);
         PageInfo<User> userList = userService.findUserListByPageObj(st);
