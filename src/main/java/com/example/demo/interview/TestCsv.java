@@ -46,7 +46,7 @@ public class TestCsv {
     public void test(int row, int col) {
         try {
             //先FileReader把文件读出来再bufferReader按行读  reader.readLine(); 没有标题用不着了
-            BufferedReader reader = new BufferedReader(new FileReader("D:\\sdadd\\000300.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("E:\\data\\000300.csv"));
             String line = null;
             int index = 0;
             int number = 0;
@@ -58,7 +58,7 @@ public class TestCsv {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             while ((line = reader.readLine()) != null) {
                 String item[] = line.split(",");//一行数组
-                if (index >0 ) {// 第一行数据不读取
+                if (index >0 && index<4360) {// 第一行数据不读取
                     Shares shares = new Shares();
                     shares.setId(IdUtils.getRandomIdByUUID());
                     for (int i=0;i<item.length;i++){

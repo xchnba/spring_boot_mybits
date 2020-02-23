@@ -9,26 +9,37 @@ import java.util.Date;
 public class Shares implements Serializable {
     @Id
     private String id;
+    //日期
     @Column(name = "gpdate")
     private Date gpdate;
+    //股票代码
     @Column(name = "gpdm")
     private String gpdm;
+    //股票名称
     @Column(name = "name")
     private String name;
+    //收盘价
     @Column(name = "spj")
     private Double spj;
+    //最高价
     @Column(name = "zgj")
     private Double zgj;
+    //最低价
     @Column(name = "zdj")
     private Double zdj;
+    //开盘价
     @Column(name = "kpj")
     private Double kpj;
+    //前收盘价
     @Column(name = "qspj")
     private Double qspj;
+    //平均价
     @Column(name = "pjj")
     private Double pjj;
+    //涨跌额
     @Column(name = "zde")
     private String zde;
+    //涨跌幅
     @Column(name = "zdf")
     private String zdf;
 
