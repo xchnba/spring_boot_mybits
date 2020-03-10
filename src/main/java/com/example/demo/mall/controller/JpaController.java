@@ -4,6 +4,7 @@ import com.example.demo.interview.TestCsv;
 import com.example.demo.mall.common.Utils.IdUtils;
 import com.example.demo.mall.controller.thread.threadpool.UsersCallable;
 import com.example.demo.mall.controller.thread.threadpool.UsersThread;
+import com.example.demo.mall.dao.BtccoinDao;
 import com.example.demo.mall.dao.SharesDao;
 import com.example.demo.mall.dao.UserDao;
 import com.example.demo.mall.domain.Shares;
@@ -24,6 +25,8 @@ public class JpaController {
     UserDao userDao;
     @Autowired
     SharesDao sharesDao;
+    @Autowired
+    BtccoinDao btccoinDao;
     @RequestMapping("/jpainsert")
     @ResponseBody
     public String jpaInsetr(){
@@ -140,7 +143,7 @@ public class JpaController {
     @RequestMapping("/insertshares")
     @ResponseBody
     public String insertshares(){
-        TestCsv csv = new TestCsv(sharesDao);
+        TestCsv csv = new TestCsv(btccoinDao);
         csv.test(3,1);
         return "插入csv数据成功";
     }

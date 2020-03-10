@@ -1,7 +1,9 @@
 package com.example.demo.interview;
 
 import com.example.demo.mall.common.Utils.IdUtils;
+import com.example.demo.mall.dao.BtccoinDao;
 import com.example.demo.mall.dao.SharesDao;
+import com.example.demo.mall.domain.Btccoin;
 import com.example.demo.mall.domain.Shares;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +23,8 @@ import java.util.Date;
  */
 public class TestCsv {
 
-   private SharesDao sharesDao;
+//   private SharesDao sharesDao;
+   private BtccoinDao btccoinDao;
 
     public static void main(String[] args) {
 
@@ -39,8 +42,8 @@ public class TestCsv {
 //        test.test(3, 1);
     }
 
-    public  TestCsv(SharesDao sharesDao){
-        this.sharesDao = sharesDao;
+    public  TestCsv(BtccoinDao btccoinDao){
+        this.btccoinDao = btccoinDao;
     }
 
     public void test(int row, int col) {
@@ -58,50 +61,60 @@ public class TestCsv {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             while ((line = reader.readLine()) != null) {
                 String item[] = line.split(",");//一行数组
-                if (index >0 && index<4360) {// 第一行数据不读取
-                    Shares shares = new Shares();
+                if (index >0 && index<54) {// 第一行数据不读取
+                    Btccoin shares = new Btccoin();
                     shares.setId(IdUtils.getRandomIdByUUID());
                     for (int i=0;i<item.length;i++){
                         String last = item[i];//这里
                         if(i==0){
+                            last=last.replace("/","-");
                           Date dt = sdf.parse(last);
                           shares.setGpdate(dt);
                         }
                         if(i==1){
-                            shares.setGpdm(last);
-                        }
-                        if(i==2){
-                            shares.setName("沪深300");
-                        }
-                        if(i==3){
-                            spj = Double.valueOf(last);
-                            shares.setSpj(spj);
-                        }
-                        if(i==4){
-                            zgj = Double.valueOf(last);
-                            shares.setZgj(zgj);
-                        }
-                        if(i==5){
-                            zdj = Double.valueOf(last);
-                            shares.setZdj(zdj);
-                        }
-                        if(i==6){
+//                            shares.setGpdm(last);
                             kpj = Double.valueOf(last);
                             shares.setKpj(kpj);
                         }
-                        if(i==7){
-                            qspj = Double.valueOf(last);
-                            shares.setQspj(qspj);
+                        if(i==2){
+//                            shares.setName("沪深300");
+                            zgj = Double.valueOf(last);
+                            shares.setZgj(zgj);
                         }
-                        if(i==8){
-                            shares.setZde(last);
+                        if(i==3){
+//                            spj = Double.valueOf(last);
+//                            shares.setSpj(spj);
+                            zdj = Double.valueOf(last);
+                            shares.setZdj(zdj);
                         }
-                        if(i==9){
-                            double pjj =(shares.getZgj()+shares.getZdj())/2;
-                            shares.setZdf(last);
-                            shares.setPjj(pjj);
-                            sharesDao.save(shares);
+                        if(i==4){
+//                            zgj = Double.valueOf(last);
+//                            shares.setZgj(zgj);
+                            spj = Double.valueOf(last);
+                            shares.setSpj(spj);
+                            btccoinDao.save(shares);
                         }
+//                        if(i==5){
+//                            zdj = Double.valueOf(last);
+//                            shares.setZdj(zdj);
+//                        }
+//                        if(i==6){
+//                            kpj = Double.valueOf(last);
+//                            shares.setKpj(kpj);
+//                        }
+//                        if(i==7){
+//                            qspj = Double.valueOf(last);
+//                            shares.setQspj(qspj);
+//                        }
+//                        if(i==8){
+//                            shares.setZde(last);
+//                        }
+//                        if(i==9){
+//                            double pjj =(shares.getZgj()+shares.getZdj())/2;
+//                            shares.setZdf(last);
+//                            shares.setPjj(pjj);
+//                            sharesDao.save(shares);
+//                        }
                         System.out.println(last+"一共打印了多少数据=="+number);
                         number++;
                     }

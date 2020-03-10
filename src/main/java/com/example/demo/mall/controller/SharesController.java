@@ -42,10 +42,11 @@ public class SharesController {
           shares.get(i);
           sharesList.add(shares.get(i));
 //          System.out.println(shares.get(i).toString());
-          i=i+5;
+          i=i+7;
       }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        dingtou(sharesList);
         for(int i=0;i<sharesList.size();i++){
             int n = i + 1;
             if(n>87){
@@ -60,7 +61,7 @@ public class SharesController {
                 jpList2.add(jpList1.get(i));
             }
         }
-        dingtou(jpList2);
+//        dingtou(jpList2);
         return "查询成功";
     }
 
@@ -77,13 +78,13 @@ public class SharesController {
             fe = dt/kpj;
             ljfe = fe +ljfe;
             jj = (i+1)*dt/ljfe;
-            if(n>52){
-                if(kpj>jj*(1+n*0.0025)){
-                    System.out.println("定投到第"+(i+1)+"周"+sdf.format(jpList1.get(i).getGpdate())+"净利润=="+(ljfe*jpList1.get(i).getPjj()-n*dt));
+//            if(n>52){
+                if(kpj>jj*(1+1)){
+                    System.out.println("定投到第"+(i+1)+"周"+sdf.format(jpList1.get(i).getGpdate())+"净利润=="+(ljfe*jpList1.get(i).getKpj()-n*dt));
                     break;
                 }
-            }
-            System.out.println("定投到第"+(i+1)+"周"+sdf.format(jpList1.get(i).getGpdate())+"均价等于=="+jj+"累计份额=="+ljfe+"当日均价"+jpList1.get(i).getPjj());
+//            }
+            System.out.println("定投到第"+(i+1)+"周"+sdf.format(jpList1.get(i).getGpdate())+"均价等于=="+jj+"累计份额=="+ljfe+"当日开盘价"+jpList1.get(i).getKpj());
             System.out.println(jpList1.get(i).toString());
         }
     }
