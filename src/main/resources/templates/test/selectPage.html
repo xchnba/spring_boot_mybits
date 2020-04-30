@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>分页</title>
+    <script src="/js/common/jquery-3.4.1.min.js"></script>
+    <!--<link rel="stylesheet" href="css/style.css" />-->
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    a{
+        color: #333333;
+        text-decoration: none;
+    }
+    .lmian_bot{
+        width: 300px;
+        height: auto;
+        margin: 50px auto;
+        border: 5px solid white;
+    }
+    .lmian_bot_ul ul li{
+        height: 25px;
+        line-height: 25px;
+        margin-left: 5px;
+        list-style: none;
+    }
+    .lmian_bot_ul ul li a:hover{
+        color: red;
+    }
+    .lmian_bot_ul ul li span{
+        float: right;
+        margin-right: 5px;
+    }
+    .foosun_pagebox{
+        margin-top: 20px;
+    }
+
+
+</style>
+</head>
+<body>
+请选择课程 <input type="text"  id="ai" name="course" width="200px"/>
+<div class="lmian_bot">
+    <div class="lmian_bot_ul">
+        <ul>
+            <li><a href="###">节水知识宣传</a><span>[2017-05-15]</span></li>
+            <li><a href="###">不用水水表也走字”四大原因</a><span>[2016-03-02]</span></li>
+            <li><a href="###">水处理工艺技术简介</a><span>[2016-03-02]</span></li>
+            <li><a href="###">水表自转情况分析说明</a><span>[2016-03-02]</span></li>
+            <li><a href="###">怎样读水表</a><span>[2016-03-02]</span></li>
+            <li><a href="###">水处理工艺技术简介</a><span>[2015-12-28]</span></li>
+            <li><a href="###">不用水水表也走字”四大原因</a><span>[2015-12-28]</span></li>
+            <li><a href="###">怎样读水表</a><span>[2015-12-28]</span></li>
+            <li><a href="###">水表自转情况分析说明</a><span>[2015-12-28]</span></li>
+            <li><a href="###">不容乐观的水资源现状</a><span>[2015-12-28]</span></li>
+            <li><a href="###">生活用水小常识</a><span>[2015-12-28]</span></li>
+            <li><a href="###">节水就在身边－－家庭节水小窍门</a><span>[2015-12-28]</span></li>
+            <li><a href="###">放心用水小贴士</a><span>[2015-12-28]</span></li>
+        </ul>
+        <div class="foosun_pagebox">
+            <a class="first">第一页</a>
+            <a class="prev">上一页</a>
+            <a class="next">下一页</a>
+            <a class="last">尾页</a>
+            10条/页 共
+            <a class="page"></a>页/
+            <a class="num"></a>条
+            当前第<a class="active"></a>页
+            <select></select>
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript" src="js/index.js" ></script>-->
+<script>
+    $(function() {
+        $('.lmian_bot_ul ul li:gt(9)').hide(); //第十条之后隐藏   与$('.lmian_bot_ul ul li:lt(9)').hide();的区别
+        let all_li = $('.lmian_bot_ul ul li').length; //所有数据
+        let paper_show = 10; //每页显示10条数据
+        let all_page = Math.ceil(all_li / paper_show); //所有页数
+        let active_paper = 1; //当前为第一页
+        $('.foosun_pagebox .page').text(all_page); //显示所有页
+        $('.foosun_pagebox .num').text(all_li); //显示所有条数
+        $('.foosun_pagebox .active').text(active_paper); //显示当前页
+
+        if(all_page > 1) {
+            $('.foosun_pagebox .next,.foosun_pagebox .last').css({
+                "text-decoration": "underline"
+            });
+        } else {
+            $('.foosun_pagebox a').css({
+                "text-decoration": "none"
+            });
+        }
+        function change(active_paper) {
+            if(active_paper == 1) {
+                $('.foosun_pagebox .first,.foosun_pagebox .prev').css({
+                    "text-decoration": "none"
+                });
+                $('.foosun_pagebox .last,.foosun_pagebox .next').css({
+                    "text-decoration": "underline"
+                });
+            } else if(active_paper == all_page) {
+                $('.foosun_pagebox .first,.foosun_pagebox .prev').css({
+                    "text-decoration": "underline"
+                });
+                $('.foosun_pagebox .last,.foosun_pagebox .next').css({
+                    "text-decoration": "none"
+                });
+            } else {
+                $('.foosun_pagebox .first,.foosun_pagebox .prev,.foosun_pagebox .last,.foosun_pagebox .next').css({
+                    "text-decoration": "underline"
+                });
+            }
+        }
+        //动态生成option
+        for(let paper = 1; paper <= all_page; paper++) {
+            $('.foosun_pagebox select').append('<option>第' + paper + '页</option>');
+        }
+        //点击至首页
+        $('.foosun_pagebox .first').click(function() {
+            active_paper = 1;
+            change(active_paper);
+            $(".active").text(1);
+            $.each($('.lmian_bot_ul ul li'), function(index, item) {
+                var start = 0; //起始范围
+                var end = paper_show; //结束范围
+                if(index >= start && index < end) { //如果索引值是在start和end之间的元素就显示，否则就隐藏
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+        //点击至尾页
+        $('.foosun_pagebox .last').click(function() {
+            active_paper = all_page;
+            change(active_paper);
+            $(".active").text(active_paper); //点击下一页的时候当前页数的值就加1
+            $.each($('.lmian_bot_ul ul li'), function(index, item) {
+                var start = paper_show * (active_paper - 1); //起始范围
+                var end = paper_show * active_paper; //结束范围
+                if(index >= start && index < end) { //如果索引值是在start和end之间的元素就显示，否则就隐
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+        //下一页
+        $(".foosun_pagebox .next").click(function() {
+            if(active_paper == all_page) {
+                return false; //如果大于总页数就禁用下一页
+            } else {
+                $(".active").text(++active_paper); //点击下一页的时候当前页数的值就加1
+                change(active_paper);
+                $.each($('.lmian_bot_ul ul li'), function(index, item) {
+                    var start = paper_show * (active_paper - 1); //起始范围
+                    var end = paper_show * active_paper; //结束范围
+                    if(index >= start && index < end) { //如果索引值是在start和end之间的元素就显示，否则就隐
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+        //上一页
+        $(".foosun_pagebox .prev").click(function() {
+            if(active_paper == 1) {
+                return false;
+            } else {
+
+                $(".active").text(--active_paper);
+                change(active_paper);
+                $.each($('.lmian_bot_ul ul li'), function(index, item) {
+                    var start = paper_show * (active_paper - 1); //起始范围
+                    var end = paper_show * active_paper; //结束范围
+                    if(index >= start && index < end) { //如果索引值是在start和end之间的元素就显示，否则就隐藏
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            }
+        });
+        //选择下拉框中的值
+        let value = 0;
+        let num = 0;
+        $('.foosun_pagebox select').change(function() { //使用change
+            value = $(this).val(); //得到option里面值
+            num = value.replace(/[^0-9]/ig, ""); //获取到里面的数字
+            active_paper = num;
+            $(".active").text(active_paper);
+            change(active_paper);
+            $.each($('.lmian_bot_ul ul li'), function(index, item) {
+                var start = paper_show * (active_paper - 1); //起始范围
+                var end = paper_show * active_paper; //结束范围
+                if(index >= start && index < end) { //如果索引值是在start和end之间的元素就显示，否则就隐藏
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

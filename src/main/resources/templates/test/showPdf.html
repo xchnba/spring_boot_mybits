@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>分页</title>
+    <script src="/js/common/jquery-3.4.1.min.js"></script>
+    <script src="/js/common/jquery.media.js"></script>
+    <!--<script src="/layui/media.js?21233"></script>-->
+    <!--<link rel="stylesheet" href="css/style.css" />-->
+<style>
+
+</style>
+</head>
+<body>
+<div class="pdf"></div>
+
+<a class="media" href="http://localhost:8080/doc/abc.pdf"></a>
+
+<script type="text/javascript">
+   $(function() {
+       $('a.media').media({width: 450, height: 350, autoplay: true});
+   } );
+</script>
+</body>
+</html>
