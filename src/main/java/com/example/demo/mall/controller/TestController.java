@@ -55,6 +55,15 @@ public class TestController {
         return "/page/jskzcss";
     }
 
-
+    @RequestMapping("/select")
+    public String select(){
+        String a = "2122323";
+        return "/test/selectPage";
+    }
+    @RequestMapping("/showPdf")
+    public String showPdf(){
+        String a = "2122323";
+        return "/test/showPdf";
+    }
 
 }
